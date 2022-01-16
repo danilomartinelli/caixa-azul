@@ -21,7 +21,7 @@
       </div>
       <div class="flex-1 px-2 mx-2">
         <span class="text-lg font-bold">
-                With two icons
+                Caixa Azul
               </span>
       </div>
       <div x-data="{ open: false}" class="flex-none relative">
@@ -46,7 +46,7 @@
       </div>
     </header>
 
-    <div class="rounded-lg shadow bg-base-200 drawer h-full">
+    <div class="shadow bg-base-200 drawer h-full">
       <input id="my-drawer" type="checkbox" class="drawer-toggle">
       <div class="flex flex-col drawer-content">
          <%= @inner_content %>
@@ -54,11 +54,8 @@
       <div class="drawer-side">
         <label for="my-drawer" class="drawer-overlay"></label>
         <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-          <li>
-            <a>Menu Item</a>
-          </li>
-          <li>
-            <a>Menu Item</a>
+           <li>
+            <%= link "Dashboard", to: Routes.dashboard_path(@conn, :index), class: "" %>
           </li>
         </ul>
       </div>
