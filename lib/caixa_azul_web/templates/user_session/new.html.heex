@@ -2,9 +2,9 @@
 
 <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
   <%= if @error_message do %>
-    <div class="alert alert-danger">
-      <small><%= @error_message %></small>
-    </div>
+  <div class="alert alert-danger">
+    <small><%= @error_message %></small>
+  </div>
   <% end %>
 
   <div class="mt-4">
@@ -23,8 +23,8 @@
 
   <div class="mt-4">
     <%= label f, :remember_me, class: "block text-gray-600 dark:text-gray-200 text-sm font-medium mb-2" do %>
-      <%= checkbox f, :remember_me, class: "form-checkbox" %>
-      <span class="ml-1">Keep me logged in for 60 days</span>
+    <%= checkbox f, :remember_me, class: "form-checkbox" %>
+    <span class="ml-1">Keep me logged in for 60 days</span>
     <% end %>
   </div>
 

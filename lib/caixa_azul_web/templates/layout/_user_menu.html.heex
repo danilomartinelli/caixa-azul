@@ -1,7 +1,7 @@
 <%= if @current_user do %>
-  <%= link "Configurações", to: Routes.user_settings_path(@conn, :edit) %>
-  <%= link "Sair", to: Routes.user_session_path(@conn, :delete), method: :delete %>
+<%= link "Configurações", to: Routes.user_settings_path(@conn, :edit) %>
+<%= link "Sair", to: Routes.user_session_path(@conn, :delete), method: :delete %>
 <% else %>
-  <%= link "Registrar", to: Routes.user_registration_path(@conn, :new) %>
-  <%= link "Entrar", to: Routes.user_session_path(@conn, :new) %>
+<%= link "Registrar", to: Routes.user_registration_path(@conn, :new) %>
+<%= link "Entrar", to: Routes.user_session_path(@conn, :new) %>
 <% end %>
