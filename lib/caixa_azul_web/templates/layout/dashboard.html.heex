@@ -1,74 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="corporate" class="h-full bg-base-100">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= csrf_meta_tag() %>
-  <%= live_title_tag assigns[:page_title] || "CaixaAzul", suffix: " · Phoenix Framework" %>
-  <script src="//unpkg.com/alpinejs" defer></script>
-  <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css" )} />
-  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js" )}></script>
-</head>
-
-<body class="flex flex-col h-full text-base-content">
-  <header class="navbar shadow-lg bg-neutral text-neutral-content">
-    <div class="flex-none">
-      <label for="my-drawer" class="btn btn-square btn-ghost">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || "CaixaAzul", suffix: " · Phoenix Framework" %>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css" )} />
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js" )}></script>
+  </head>
+  <body class="flex flex-col h-full text-base-content">
+    <header class="navbar shadow-lg bg-neutral text-neutral-content">
+      <div class="flex-none">
+        <label for="my-drawer" class="btn btn-square btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
           class="inline-block w-6 h-6 stroke-current">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </label>
-    </div>
-    <div class="flex-1 px-2 mx-2">
-      <span class="text-lg font-bold">
-        Caixa Azul
-      </span>
-    </div>
-    <div x-data="{ open: false}" class="flex-none relative">
-      <button class="btn btn-square btn-ghost" @click="open = !open">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </label>
+      </div>
+      <div class="flex-1 px-2 mx-2">
+        <span class="text-lg font-bold">
+          Caixa Azul
+        </span>
+      </div>
+      <div x-data="{ open: false}" class="flex-none relative">
+        <button class="btn btn-square btn-ghost" @click="open = !open">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
           class="inline-block w-6 h-6 stroke-current">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z">
-          </path>
-        </svg>
-      </button>
-      <div class="absolute top-10 right-0 z-10" x-show="open" @click.outside="open = false" x-cloak>
-        <ul class="menu py-3 shadow-lg bg-base-100 rounded-box text-neutral">
+            </path>
+          </svg>
+        </button>
+        <div class="absolute top-10 right-0 z-10" x-show="open" @click.outside="open = false" x-cloak>
+          <ul class="menu py-3 shadow-lg bg-base-100 rounded-box text-neutral">
+            <li>
+              <%= link "Configurações", to: Routes.user_settings_path(@conn, :edit), class: "" %>
+            </li>
+            <li>
+              <%= link "Sair", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="shadow bg-base-200 drawer h-full">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle">
+      <div class="flex flex-col drawer-content">
+        <%= @inner_content %>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+        <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
           <li>
-            <%= link "Configurações", to: Routes.user_settings_path(@conn, :edit), class: "" %>
-          </li>
-          <li>
-            <%= link "Sair", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "" %>
+            <%= link "Dashboard", to: Routes.dashboard_path(@conn, :index), class: "" %>
           </li>
         </ul>
       </div>
     </div>
-  </header>
-
-  <div class="shadow bg-base-200 drawer h-full">
-    <input id="my-drawer" type="checkbox" class="drawer-toggle">
-    <div class="flex flex-col drawer-content">
-      <%= @inner_content %>
-    </div>
-    <div class="drawer-side">
-      <label for="my-drawer" class="drawer-overlay"></label>
-      <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-        <li>
-          <%= link "Dashboard", to: Routes.dashboard_path(@conn, :index), class: "" %>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <footer class="py-3 mt-auto bg-neutral">
-    <div class="container max-w-4xl pb-4 mx-auto text-sm text-center text-gray-300">
-      &copy; <%= DateTime.utc_now.year %> CaixaAzul
-    </div>
-  </footer>
-</body>
-
+    <footer class="py-3 mt-auto bg-neutral">
+      <div class="container max-w-4xl pb-4 mx-auto text-sm text-center text-gray-300">
+        &copy; <%= DateTime.utc_now.year %> CaixaAzul
+      </div>
+    </footer>
+  </body>
 </html>
