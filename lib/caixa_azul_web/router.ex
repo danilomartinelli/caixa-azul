@@ -72,6 +72,7 @@ defmodule CaixaAzulWeb.Router do
       pipe_through [:browser, :require_authenticated_user, :put_dashboard_layout]
 
       live "/dashboard", DashboardLive, :index
+      live "/dashboard/services", ServicesLive, :index
     end
   end
 end

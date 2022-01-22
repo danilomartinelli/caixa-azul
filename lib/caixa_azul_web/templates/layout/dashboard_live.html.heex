@@ -13,5 +13,14 @@
       <%= error %>
     </p>
   <% end %>
+  <div class="text-sm breadcrumbs">
+    <ul>
+      <%= for breadcrumb <- @breadcrumbs do %>
+        <li>
+          <%= link breadcrumb[:name], to: breadcrumb[:path] %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
   <%= @inner_content %>
 </main>
